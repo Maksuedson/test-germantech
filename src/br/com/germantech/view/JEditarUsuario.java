@@ -160,14 +160,6 @@ public class JEditarUsuario extends JFrame {
 
 				UsuarioDao dao = new UsuarioDao();
 				try {
-					if (dao.emailExists(usuario.getEmail())) {
-						JOptionPane.showMessageDialog(null, "E-mail já cadastrado!");
-						return;
-					}
-					if (dao.cpfExists(usuario.getCpf())) {
-						JOptionPane.showMessageDialog(null, "CPF já cadastrado!");
-						return;
-					}
 					Long id = Long.valueOf(textId.getText());
 					dao.alterarUsuario(id, usuario);
 					JOptionPane.showMessageDialog(null, "Usuário" + textNome.getText() + " Inserido com sucesso");
