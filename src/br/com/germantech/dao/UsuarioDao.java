@@ -59,6 +59,32 @@ public class UsuarioDao implements UsuarioServico {
 		// TODO Auto-generated method stub
 		
 	}
+	
+    public boolean emailExists(String email) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+        return false;
+    }
+
+    public boolean cpfExists(String cpf) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE cpf = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; 
+            }
+        }
+        return false;
+    }
 
 
 }
