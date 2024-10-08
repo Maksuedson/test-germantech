@@ -15,5 +15,5 @@ public interface UsuarioServico {
 	
 	List<Usuario> listaUsuarios() throws SQLException;
 	
-	void deleteById(Long id);
+	void deleteById(Long id) throws SQLException;
 }
