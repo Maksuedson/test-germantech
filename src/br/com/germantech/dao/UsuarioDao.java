@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.germantech.conexao.DatabaseConnection;
@@ -49,10 +50,32 @@ public class UsuarioDao implements UsuarioServico {
 	}
 
 	@Override
-	public List<Usuario> listaUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Usuario> listaUsuarios() throws SQLException {
+		connection = DatabaseConnection.getConnection();
+	    List<Usuario> usuarios = new ArrayList<>();
+	    String sql = "SELECT * FROM usuario";
+	    
+	    try (Connection conn = DatabaseConnection.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql);
+	         ResultSet rs = stmt.executeQuery()) {
+	        
+	        while (rs.next()) {
+	            Usuario usuario = new Usuario();
+	            usuario.setId(rs.getLong("id"));
+	            usuario.setName(rs.getString("name"));
+	            usuario.setPhone(rs.getString("phone"));
+	            usuario.setEmail(rs.getString("email"));
+	            usuario.setCpf(rs.getString("cpf"));
+	            usuario.setPassword(rs.getString("password"));
+	            usuarios.add(usuario);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return usuarios;
 	}
+
 
 	@Override
 	public void deleteById(Long id) {
