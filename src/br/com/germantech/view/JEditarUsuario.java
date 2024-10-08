@@ -31,21 +31,6 @@ public class JEditarUsuario extends JFrame {
 	private JTextField textCpf;
 	private JTextField textPassword;
 	private JButton btn_salvar;
-	private JButton btn_sair;
-	private JButton btn_limpar;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JEditarUsuario window = new JEditarUsuario();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public JEditarUsuario() {
 
