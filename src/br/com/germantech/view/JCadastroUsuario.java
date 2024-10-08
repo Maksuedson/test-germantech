@@ -19,6 +19,7 @@ import javax.swing.text.MaskFormatter;
 import br.com.germantech.dao.UsuarioDao;
 import br.com.germantech.entidade.Usuario;
 import br.com.germantech.utils.Criptografia;
+import br.com.germantech.utils.ValidadorCPF;
 
 public class JCadastroUsuario extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -137,7 +138,7 @@ public class JCadastroUsuario extends JFrame {
 				usuario.setName(textNome.getText());
 				usuario.setPhone(textTelefone.getText());
 				usuario.setEmail(textEmail.getText());
-				usuario.setCpf(textCpf.getText());
+				usuario.setCpf(textCpf.getText().replaceAll("[^0-9]", "")); 
 				usuario.setPassword(Criptografia.criptografar(textPassword.getText(), "MD5"));
 
 				if ((textNome.getText().isEmpty()) || (textCpf.getText().isEmpty()) || (textEmail.getText().isEmpty())
@@ -145,6 +146,11 @@ public class JCadastroUsuario extends JFrame {
 					JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
 					return;
 				}
+				
+		        if (!ValidadorCPF.isValid(usuario.getCpf())) {
+		            JOptionPane.showMessageDialog(null, "CPF inválido!");
+		            return;
+		        }
 
 				UsuarioDao dao = new UsuarioDao();
 				try {
@@ -157,7 +163,7 @@ public class JCadastroUsuario extends JFrame {
 						return;
 					}
 					dao.cadastrar(usuario);
-					JOptionPane.showMessageDialog(null, "Usuário" + textNome.getText() + " Inserido com sucesso");
+					JOptionPane.showMessageDialog(null, "Usuário " + textNome.getText() + " Inserido com sucesso");
 					limparCampos();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
