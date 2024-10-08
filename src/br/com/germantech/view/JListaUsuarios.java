@@ -28,7 +28,8 @@ public class JListaUsuarios extends JFrame {
         setSize(900, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
+        setVisible(true);
+        
         modeloTabela = new DefaultTableModel(new String[]{"ID", "Nome", "Telefone", "Email", "CPF", "SENHA"}, 0);
         tabelaUsuarios = new JTable(modeloTabela);
         JScrollPane scrollPane = new JScrollPane(tabelaUsuarios);
@@ -60,12 +61,5 @@ public class JListaUsuarios extends JFrame {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro ao carregar usuários: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JListaUsuarios frame = new JListaUsuarios();
-            frame.setVisible(true);
-        });
     }
 }

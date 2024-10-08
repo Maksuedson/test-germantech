@@ -18,13 +18,21 @@ public class JTelaPrincipal extends JFrame {
         JMenuItem itemCadastrarUsuario = new JMenuItem("Cadastrar Usuário");
         JMenuItem itemAlterarUsuario = new JMenuItem("Alterar Usuário");
         JMenuItem itemExcluirUsuario = new JMenuItem("Excluir Usuário");
-        JMenuItem itemListarUsuario = new JMenuItem("Listar Usuário");
+        JMenuItem itemListarUsuario = new JMenuItem("Listar Usuários");
         JMenuItem itemSair = new JMenuItem("Sair");
 
         itemCadastrarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	UsuarioGui frame = new UsuarioGui();
+
+            }
+        });
+        
+        itemListarUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	JListaUsuarios frame = new JListaUsuarios();
 
             }
         });
