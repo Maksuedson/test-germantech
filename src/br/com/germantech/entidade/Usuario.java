@@ -2,11 +2,15 @@ package br.com.germantech.entidade;
 
 public class Usuario {
 
+	private Long id;
 	private String name;
 	private String phone;
 	private String email;
 	private String cpf;
 	private String password;
+	
+	public Usuario() {
+	}
 	
 	public Usuario(String name, String phone, String email, String cpf, String password) {
 		this.name = name;
@@ -14,6 +18,14 @@ public class Usuario {
 		this.email = email;
 		this.cpf = cpf;
 		this.password = password;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
