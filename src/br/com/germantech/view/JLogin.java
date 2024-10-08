@@ -56,26 +56,24 @@ public class JLogin extends JFrame {
 		lblNewLabel_1.setBounds(42, 118, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		btnNewButton = new JButton("Entrar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Criptografia criptografia = new Criptografia(passwordField.getText(), Criptografia.MD5);
-				System.out.println(criptografia.criptografar());
-				if (textFieldUsuario.getText() != null && !textFieldUsuario.getText().isEmpty()
-						&& passwordField.getText() != null && !passwordField.getText().isEmpty()) {
-					if (criptografia.criptografar().equals("E10ADC3949BA59ABBE56E057F20F883E")) {
-						JOptionPane.showMessageDialog(btnNewButton, "Informações válidas");
-						dispose();
-						
-						UsuarioGui jUsuario = new UsuarioGui();
-					}
-
-				} else {
-					JOptionPane.showMessageDialog(btnNewButton, "Verifique as informações", "Aviso",
-							JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
+        btnNewButton = new JButton("Entrar");
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String senhaCriptografada = Criptografia.criptografar(new String(passwordField.getPassword()), Criptografia.MD5);
+                System.out.println(senhaCriptografada);
+                
+                if (!textFieldUsuario.getText().isEmpty() && passwordField.getPassword().length > 0) {
+                    if (senhaCriptografada.equals("E10ADC3949BA59ABBE56E057F20F883E")) {
+                        JOptionPane.showMessageDialog(btnNewButton, "Informações válidas");
+                        dispose();
+                        
+                        UsuarioGui jUsuario = new UsuarioGui();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(btnNewButton, "Verifique as informações", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
 		btnNewButton.setBackground(new Color(49, 62, 64));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(79, 182, 89, 23);

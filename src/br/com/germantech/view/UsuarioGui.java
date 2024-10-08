@@ -18,6 +18,7 @@ import javax.swing.text.MaskFormatter;
 
 import br.com.germantech.dao.UsuarioDao;
 import br.com.germantech.entidade.Usuario;
+import br.com.germantech.utils.Criptografia;
 
 public class UsuarioGui extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -141,7 +142,7 @@ public class UsuarioGui extends JFrame {
         		usuario.setPhone(textTelefone.getText());
         		usuario.setEmail(textEmail.getText());
         		usuario.setCpf(textCpf.getText());
-        		usuario.setPassword(textPassword.getText());
+        		usuario.setPassword(Criptografia.criptografar(textPassword.getText(), "MD5"));
         		
         		if ((textNome.getText().isEmpty()) || (textCpf.getText().isEmpty()) || (textEmail.getText().isEmpty()) || (textTelefone.getText().isEmpty())){
         			JOptionPane.showMessageDialog(null, "Os campos não podem retornar vazios");
