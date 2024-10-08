@@ -7,20 +7,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import br.com.germantech.conexao.DatabaseConnection;
 import br.com.germantech.entidade.Usuario;
 import br.com.germantech.service.UsuarioServico;
 
 public class UsuarioDao implements UsuarioServico {
 
     private Connection connection;
-
-    public UsuarioDao(Connection connection) {
-        this.connection = connection;
-    }
-
+    
     @Override
-    public Usuario cadastrar(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (name, phone, email, cpf, password) VALUES (?, ?, ?, ?, ?)";
+    public void cadastrar(Usuario usuario) throws SQLException {
+    	connection = DatabaseConnection.getConnection();
+        String sql = "INSERT INTO usuario (name, phone, email, cpf, password) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, usuario.getName());
             stmt.setString(2, usuario.getPhone());
@@ -32,12 +30,11 @@ public class UsuarioDao implements UsuarioServico {
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
                 Long id = generatedKeys.getLong(1);
-                return buscaUsuarioPorId(id);
+                usuario.setId(id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 	@Override
@@ -47,9 +44,8 @@ public class UsuarioDao implements UsuarioServico {
 	}
 
 	@Override
-	public Usuario alterarUsuario(Long id, Usuario usuario) {
+	public void alterarUsuario(Long id, Usuario usuario) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
