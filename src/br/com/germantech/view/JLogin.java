@@ -67,7 +67,7 @@ public class JLogin extends JFrame {
                         JOptionPane.showMessageDialog(btnNewButton, "Informações válidas");
                         dispose();
                         
-                        UsuarioGui jUsuario = new UsuarioGui();
+                        JTelaPrincipal telaPrincipal = new JTelaPrincipal();
                     }
                 } else {
                     JOptionPane.showMessageDialog(btnNewButton, "Verifique as informações", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -96,7 +96,7 @@ public class JLogin extends JFrame {
 		
 		passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
 	        public void keyPressed(java.awt.event.KeyEvent evt) {
-	        	salvarPressed(evt);
+	        	entrarPressed(evt);
 	        }
 	    });	
 	}
@@ -107,7 +107,7 @@ public class JLogin extends JFrame {
         }
     }
     
-    private void salvarPressed(java.awt.event.KeyEvent evt) {                                 
+    private void entrarPressed(java.awt.event.KeyEvent evt) {                                 
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
         	btnNewButton.doClick();
         }
