@@ -5,3 +5,5 @@ Usuario é usuario e senha é 123456
 - Cpf formatado
 - Telefone formatado
 - Ao pressionar enter o cursor é movido para o campo seguinte
+
+- Salva senha criptografada
