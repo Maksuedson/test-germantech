@@ -121,11 +121,25 @@ public class UsuarioDao implements UsuarioServico {
 	    return usuarios;
 	}
 
-
 	@Override
-	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteById(Long id) throws SQLException {
+	    connection = DatabaseConnection.getConnection();
+	    String sql = "DELETE FROM usuario WHERE id = ?";
+
+	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+	        stmt.setLong(1, id);
+	        int rowsAffected = stmt.executeUpdate();
+	        if (rowsAffected == 0) {
+	            throw new SQLException("Nenhum usuário encontrado com o ID: " + id);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw e; 
+	    } finally {
+	        if (connection != null) {
+	            connection.close();
+	        }
+	    }
 	}
 	
     public boolean emailExists(String email) throws SQLException {
