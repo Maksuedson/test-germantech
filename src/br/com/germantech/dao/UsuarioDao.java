@@ -66,10 +66,33 @@ public class UsuarioDao implements UsuarioServico {
     }
 
 
-	@Override
-	public void alterarUsuario(Long id, Usuario usuario) {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void alterarUsuario(Long id, Usuario usuario) throws SQLException {
+        connection = DatabaseConnection.getConnection();
+        String sql = "UPDATE usuario SET name = ?, phone = ?, email = ?, cpf = ?, password = ? WHERE id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, usuario.getName());
+            stmt.setString(2, usuario.getPhone());
+            stmt.setString(3, usuario.getEmail());
+            stmt.setString(4, usuario.getCpf());
+            stmt.setString(5, usuario.getPassword());
+            stmt.setLong(6, id);
+            
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new SQLException("Nenhum usuário encontrado com o ID: " + id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; 
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
 
 	@Override
 	public List<Usuario> listaUsuarios() throws SQLException {
