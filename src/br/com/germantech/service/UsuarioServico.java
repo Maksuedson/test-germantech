@@ -11,7 +11,7 @@ public interface UsuarioServico {
 	
 	Usuario buscaUsuarioPorId(Long id) throws SQLException ;
 	
-	void alterarUsuario(Long id, Usuario usuario);
+	void alterarUsuario(Long id, Usuario usuario) throws SQLException ;
 	
 	List<Usuario> listaUsuarios() throws SQLException;
 	
