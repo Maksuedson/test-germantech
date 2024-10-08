@@ -45,7 +45,7 @@ public class JEditarUsuario extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 500, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
@@ -178,7 +178,7 @@ public class JEditarUsuario extends JFrame {
 		JButton btn_sair = new JButton("Sair");
 		btn_sair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				frame.dispose();
 			}
 		});
 		btn_sair.setBounds(327, 220, 89, 23);

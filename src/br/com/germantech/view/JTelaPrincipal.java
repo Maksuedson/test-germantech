@@ -26,7 +26,7 @@ public class JTelaPrincipal extends JFrame {
         itemCadastrarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	UsuarioGui frame = new UsuarioGui();
+            	JCadastroUsuario frame = new JCadastroUsuario();
 
             }
         });

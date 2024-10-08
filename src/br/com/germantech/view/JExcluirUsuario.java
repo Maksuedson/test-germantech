@@ -40,7 +40,7 @@ public class JExcluirUsuario extends JFrame {
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 500, 450); 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setResizable(false);
 
@@ -69,7 +69,7 @@ public class JExcluirUsuario extends JFrame {
         frame.getContentPane().add(btn_excluir);
 
         JButton btn_sair = new JButton("Sair");
-        btn_sair.addActionListener(e -> System.exit(0));
+        btn_sair.addActionListener(e -> frame.dispose());
         btn_sair.setBounds(327, 340, 89, 23);
         frame.getContentPane().add(btn_sair);
         

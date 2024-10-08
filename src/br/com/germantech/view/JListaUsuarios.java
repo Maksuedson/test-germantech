@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.germantech.dao.UsuarioDao;
@@ -26,7 +25,7 @@ public class JListaUsuarios extends JFrame {
         usuarioDao = new UsuarioDao();
         setTitle("Lista de Usuários");
         setSize(900, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
         
