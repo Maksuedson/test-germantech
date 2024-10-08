@@ -222,7 +222,7 @@ public class UsuarioGui extends JFrame {
     
     private void textPasswordPressed(java.awt.event.KeyEvent evt) {                                 
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){  
-        	btn_salvar.requestFocus();
+        	btn_salvar.doClick();
         }
     }
     
