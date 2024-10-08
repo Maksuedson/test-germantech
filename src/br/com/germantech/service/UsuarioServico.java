@@ -9,7 +9,7 @@ public interface UsuarioServico {
 
 	void cadastrar(Usuario usuario) throws SQLException ;
 	
-	Usuario buscaUsuarioPorId(Long id);
+	Usuario buscaUsuarioPorId(Long id) throws SQLException ;
 	
 	void alterarUsuario(Long id, Usuario usuario);
 	
