@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 
 public class JTelaPrincipal extends JFrame {
 
-    public JTelaPrincipal() {
+	private static final long serialVersionUID = 1L;
+
+	public JTelaPrincipal() {
         setTitle("Tela Principal");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,10 +31,26 @@ public class JTelaPrincipal extends JFrame {
             }
         });
         
+        itemAlterarUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	JEditarUsuario frame = new JEditarUsuario();
+
+            }
+        });
+        
         itemListarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	JListaUsuarios frame = new JListaUsuarios();
+
+            }
+        });
+        
+        itemExcluirUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	JExcluirUsuario frame = new JExcluirUsuario();
 
             }
         });
