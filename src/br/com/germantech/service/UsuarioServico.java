@@ -13,7 +13,7 @@ public interface UsuarioServico {
 	
 	void alterarUsuario(Long id, Usuario usuario);
 	
-	List<Usuario> listaUsuarios();
+	List<Usuario> listaUsuarios() throws SQLException;
 	
 	void deleteById(Long id);
 }
