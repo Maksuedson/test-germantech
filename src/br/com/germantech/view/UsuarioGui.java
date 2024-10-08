@@ -133,7 +133,7 @@ public class UsuarioGui extends JFrame {
         frame.getContentPane().add(textPassword);
         textPassword.setColumns(10);
         
-        JButton btn_salvar = new JButton("Cadastrar");
+        btn_salvar = new JButton("Cadastrar");
         btn_salvar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
