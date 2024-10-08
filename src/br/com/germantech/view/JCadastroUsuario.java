@@ -20,7 +20,7 @@ import br.com.germantech.dao.UsuarioDao;
 import br.com.germantech.entidade.Usuario;
 import br.com.germantech.utils.Criptografia;
 
-public class UsuarioGui extends JFrame {
+public class JCadastroUsuario extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JFrame frame;
@@ -30,14 +30,12 @@ public class UsuarioGui extends JFrame {
 	private JTextField textCpf;
 	private JTextField textPassword;
 	private JButton btn_salvar;
-	private JButton btn_sair;
-	private JButton btn_limpar;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UsuarioGui window = new UsuarioGui();
+					JCadastroUsuario window = new JCadastroUsuario();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +44,7 @@ public class UsuarioGui extends JFrame {
 		});
 	}
 
-	public UsuarioGui() {
+	public JCadastroUsuario() {
 
 		initialize();
 		listeners();
@@ -59,7 +57,7 @@ public class UsuarioGui extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 500, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
@@ -190,7 +188,7 @@ public class UsuarioGui extends JFrame {
 		JButton btn_sair = new JButton("Sair");
 		btn_sair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				frame.dispose();
 			}
 		});
 		btn_sair.setBounds(327, 220, 89, 23);
