@@ -38,11 +38,33 @@ public class UsuarioDao implements UsuarioServico {
         }
     }
 
-	@Override
-	public Usuario buscaUsuarioPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Usuario buscaUsuarioPorId(Long id) throws SQLException {
+    	connection = DatabaseConnection.getConnection();
+        Usuario usuario = null;
+        String sql = "SELECT * FROM usuario WHERE id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) { 
+                usuario = new Usuario(); 
+                usuario.setId(rs.getLong("id"));
+                usuario.setName(rs.getString("name"));
+                usuario.setPhone(rs.getString("phone"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setCpf(rs.getString("cpf"));
+                usuario.setPassword(rs.getString("password"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+
+        return usuario;
+    }
+
 
 	@Override
 	public void alterarUsuario(Long id, Usuario usuario) {
