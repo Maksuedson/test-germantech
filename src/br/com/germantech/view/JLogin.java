@@ -66,8 +66,9 @@ public class JLogin extends JFrame {
                     if (senhaCriptografada.equals("E10ADC3949BA59ABBE56E057F20F883E")) {
                         JOptionPane.showMessageDialog(btnNewButton, "Informações válidas");
                         dispose();
-                        
                         JTelaPrincipal telaPrincipal = new JTelaPrincipal();
+                    } else {
+                        JOptionPane.showMessageDialog(btnNewButton, "Senha incorreta. Tente novamente. 123456", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(btnNewButton, "Verifique as informações", "Aviso", JOptionPane.WARNING_MESSAGE);
