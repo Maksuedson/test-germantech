@@ -168,7 +168,8 @@ public class JEditarUsuario extends JFrame {
 						JOptionPane.showMessageDialog(null, "CPF já cadastrado!");
 						return;
 					}
-					dao.cadastrar(usuario);
+					Long id = Long.valueOf(textId.getText());
+					dao.alterarUsuario(id, usuario);
 					JOptionPane.showMessageDialog(null, "Usuário" + textNome.getText() + " Inserido com sucesso");
 					limparCampos();
 				} catch (SQLException e1) {
@@ -215,7 +216,18 @@ public class JEditarUsuario extends JFrame {
 	private void textEmailReleased(java.awt.event.KeyEvent evt) {
 		textEmail.setText(textEmail.getText().toLowerCase());
 	}
-
+	
+	private void textIdPressed(java.awt.event.KeyEvent evt) {
+		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+			Long id = Long.valueOf(textId.getText());
+			try {
+				buscarUsuario(id);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	private void textNomePressed(java.awt.event.KeyEvent evt) {
 		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 			textCpf.requestFocus();
@@ -247,6 +259,13 @@ public class JEditarUsuario extends JFrame {
 	}
 
 	private void listeners() {
+		
+		textId.addKeyListener(new java.awt.event.KeyAdapter() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				textIdPressed(evt);
+			}
+		});
+		
 		textNome.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyPressed(java.awt.event.KeyEvent evt) {
 				textNomePressed(evt);
@@ -262,9 +281,6 @@ public class JEditarUsuario extends JFrame {
 				textCpfPressed(evt);
 			}
 
-			public void keyReleased(java.awt.event.KeyEvent evt) {
-				// textNomeReleased(evt);
-			}
 		});
 
 		textEmail.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -300,5 +316,22 @@ public class JEditarUsuario extends JFrame {
 		textEmail.setText("");
 		textTelefone.setText("");
 		textPassword.setText("");
+	}
+	
+	private void buscarUsuario(Long id) throws SQLException {
+		UsuarioDao dao = new UsuarioDao();
+		Usuario usuario = dao.buscaUsuarioPorId(id);
+		
+	    if (usuario == null) {
+	        JOptionPane.showMessageDialog(frame, "Usuário não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+	        limparCampos(); 
+	    } else {
+	        textNome.setText(usuario.getName());
+	        textCpf.setText(usuario.getCpf());
+	        textEmail.setText(usuario.getEmail());
+	        textTelefone.setText(usuario.getPhone());
+	        textPassword.setText(usuario.getPassword());
+	    }
+
 	}
 }
