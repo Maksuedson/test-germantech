@@ -3,6 +3,6 @@ CREATE TABLE usuario (
     name VARCHAR(100) NOT NULL,
     phone VARCHAR(15),
     email VARCHAR(100) UNIQUE NOT NULL,
-    cpf VARCHAR(11) UNIQUE NOT NULL,
+    cpf VARCHAR(15) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );
