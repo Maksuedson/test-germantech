@@ -63,7 +63,7 @@ public class UsuarioGui extends JFrame {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
-		JLabel lblNewLabel = new JLabel("Cadastro de Usu\u00E1rios");
+		JLabel lblNewLabel = new JLabel("Cadastro de Usuários");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNewLabel.setBounds(118, 11, 274, 14);
 		frame.getContentPane().add(lblNewLabel);
